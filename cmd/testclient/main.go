@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"os"
 	"time"
 
@@ -144,7 +143,6 @@ func runTests(cl pb.ClientsServiceClient) error {
 	})
 
 	if len(resp.Items) != 6 {
-		fmt.Println("Length:", len(resp.Items))
 		return cli.NewExitError("invalid length", 15)
 	}
 
