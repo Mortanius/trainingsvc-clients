@@ -4,6 +4,7 @@ import (
 	"context"
 	"net"
 	"os"
+	"os/signal"
 	"time"
 
 	_ "github.com/go-sql-driver/mysql" // registers mariadb/mysql connection driver
@@ -72,10 +73,9 @@ func run(c *cli.Context) error {
 		log.Debug().Str("addr", c.String("addr")).Msg("listening")
 	}
 
-	//FIXME: fazer com que o programa só finalize ao receber um sinal os.INTERRUPT (ou +) com o channel "ch" (tip: Notify)
 	ch := make(chan os.Signal, 1)
 	// signal...
-	panic("fazer com que o programa só finalize ao receber um sinal os.INTERRUPT")
+	signal.Notify(ch, os.Interrupt)
 	<-ch
 
 	grpcServer.GracefulStop()

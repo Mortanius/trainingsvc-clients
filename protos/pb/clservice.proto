@@ -30,7 +30,7 @@ message QueryClientsRequest {
   OptString name = 2;
   Int64Comp birthday = 3;
   Int64Comp score = 4;
-  // FIXME: adicionar created_at
+  Int64Comp created_at = 5;
 }
 
 message QueryClientsResponse { repeated string ids = 1; }
